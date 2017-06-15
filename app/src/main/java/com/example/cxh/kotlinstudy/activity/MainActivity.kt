@@ -17,7 +17,8 @@ import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity() {
 
-    //companion object是在类加载的时候初始化的，只能在类中使用，相当于java中的静态内部类（kotlin没有static关键字）
+    //companion object是在类加载的时候初始化的，相当于java中的静态内部类（kotlin没有static关键字）
+    //伴生对象里可存放常量、方法
     companion object {
         val GITHUB_URL = "https://github.com/KobeBryant824"
     }
