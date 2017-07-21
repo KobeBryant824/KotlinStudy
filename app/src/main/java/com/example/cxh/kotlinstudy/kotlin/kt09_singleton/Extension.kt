@@ -1,4 +1,4 @@
-package com.example.cxh.kotlinstudy.kotlin
+package com.example.cxh.kotlinstudy.kotlin.kt09_singleton
 
 import android.content.Context
 import android.support.design.widget.Snackbar

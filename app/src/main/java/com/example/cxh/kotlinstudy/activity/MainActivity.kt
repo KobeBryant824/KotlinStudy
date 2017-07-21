@@ -3,10 +3,10 @@ package com.example.cxh.kotlinstudy.activity
 import android.graphics.Color
 import android.os.Bundle
 import com.example.cxh.kotlinstudy.R
-import com.example.cxh.kotlinstudy.kotlin.debug11
-import com.example.cxh.kotlinstudy.kotlin.log
-import com.example.cxh.kotlinstudy.kotlin.snackbar
-import com.example.cxh.kotlinstudy.kotlin.toast
+import com.example.cxh.kotlinstudy.kotlin.kt09_singleton.debug11
+import com.example.cxh.kotlinstudy.kotlin.kt09_singleton.log
+import com.example.cxh.kotlinstudy.kotlin.kt09_singleton.snackbar
+import com.example.cxh.kotlinstudy.kotlin.kt09_singleton.toast
 import com.example.cxh.kotlinstudy.util.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.experimental.CommonPool

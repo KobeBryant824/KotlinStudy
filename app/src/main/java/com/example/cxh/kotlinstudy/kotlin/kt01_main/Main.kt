@@ -1,6 +1,8 @@
 package com.example.cxh.kotlinstudy.kotlin.kt01_main
 
-
+/**
+ * https://github.com/enbandari/Kotlin-Tutorials
+ */
 fun main(args: Array<out String>) {
     println("Hello World!!")
     println(Main(0, "Kotlin"))
