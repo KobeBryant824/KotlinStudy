@@ -1,1 +1,1 @@
-include ':app', ':internallib'
+include ':app'

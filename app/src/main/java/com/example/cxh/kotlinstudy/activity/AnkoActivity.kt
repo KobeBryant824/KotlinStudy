@@ -18,14 +18,14 @@ class AnkoActivity : BaseActivity() {
 
         doAsync {
             error { Thread.currentThread().name }
-            var readText = URL("https://www.baidu.com/").readText()
+            val readText = URL("https://www.baidu.com/").readText()
             error { readText }
             uiThread { longToast("hahaha" + readText) }
         }
 
         verticalLayout {
             padding = dip(20)
-            textView("${extra}")
+            textView("$extra")
 
             val name = editText() {
                 textSize = 20f
