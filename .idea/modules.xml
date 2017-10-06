@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/KotlinStudy.iml" filepath="$PROJECT_DIR$/KotlinStudy.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/internallib/internallib.iml" filepath="$PROJECT_DIR$/internallib/internallib.iml" />
     </modules>
   </component>
 </project>

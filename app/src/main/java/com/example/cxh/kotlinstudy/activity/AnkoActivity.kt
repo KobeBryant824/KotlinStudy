@@ -14,12 +14,11 @@ class AnkoActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val extra = intent.getIntExtra("id", 0)
-        error(extra)
 
         doAsync {
-            error { Thread.currentThread().name }
+            logcat { Thread.currentThread().name }
             val readText = URL("https://www.baidu.com/").readText()
-            error { readText }
+            logcat { readText }
             uiThread { longToast("hahaha" + readText) }
         }
 
