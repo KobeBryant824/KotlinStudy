@@ -11,10 +11,12 @@ import org.jetbrains.anko.AnkoContext
  * Created by Hai (haigod7@gmail.com) on 2017/5/27 14:12.
  */
 class App : Application() {
+    lateinit var mInstance:Context
 
     override fun onCreate() {
         super.onCreate()
-
+        mInstance = this
     }
 
+    fun getInstance() = mInstance
 }

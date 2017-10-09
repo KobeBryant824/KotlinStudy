@@ -1,7 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-allopen'
+apply plugin: 'kotlin-noarg'
 
+allOpen{
+    annotation("com.example.cxh.kotlinstudy.annotations.PoKo")
+}
+
+noArg{
+    annotation("com.example.cxh.kotlinstudy.annotations.PoKo")
+}
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"

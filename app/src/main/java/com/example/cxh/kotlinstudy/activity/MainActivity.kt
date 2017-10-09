@@ -2,6 +2,7 @@ package com.example.cxh.kotlinstudy.activity
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import com.example.cxh.kotlinstudy.R
 import com.example.cxh.kotlinstudy.kotlin.snackbar
 import com.example.cxh.kotlinstudy.kotlin.toast
@@ -26,7 +27,6 @@ class MainActivity : BaseActivity() {
 //            startActivity<AnkoActivity>("id" to 5)
             toast("hello,anko")
         }
-
 
     }
 

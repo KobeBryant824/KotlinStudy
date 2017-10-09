@@ -1,23 +1,10 @@
 package com.example.cxh.kotlinstudy.kotlin
 
 fun main(args: Array<String>) {
-    val person: Person? = Person()
-    println(person)
-
-    //java
-    if (null != person) {
-        person.name = "kobe"
-        person.age = 38
-        println(person)
-    }
-
-    //to kotlin
-    person?.let {
-        person.name = "kobe"
-        person.age = 38
-        println(person)
-    }
-
+    Direction.values().forEach { println("${it.name} ${it.ordinal}") }
 }
 
-data class Person(var name: String? = null, var age: Int = 0)
+//更在意数据，可以提升代码表现力，但也会有性能开销，安卓建议用常量
+enum class Direction {
+    TOP, BOTTOM, LEFT, RIGHT
+}
