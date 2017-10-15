@@ -90,7 +90,22 @@ lambda表达式:匿名函数，当Java函数的形参是个接口且只有一个
     }
 
 
-## $ 、readLine() 、!!  ##
+## io ##
+    fun main(args: Array<String>) {
+        File("build.gradle").readLines().forEach(::println) //小文件
+
+        BufferedReader(FileReader("build.gradle")).use { //Closeable，可自动关闭io
+            var line :String
+            while (true){
+                line = it.readLine()?:break
+                println(line)
+            }
+
+        }
+    }
+
+
+## $ 、!!  ##
     fun main(args: Array<String>) {
         println("请输入第一个数")
         var a = readLine() //键盘录入
@@ -239,6 +254,8 @@ lambda表达式:匿名函数，当Java函数的形参是个接口且只有一个
 
 ## list ##
     fun main(args: Array<String>) {
+        //kotlin 的listof、setof、mapof大小不可变，没有put、add、remove
+        //只有MutableList、MutableSet、MutableMap是跟Java一样的
         var lists = listOf("Java", "Kotlin", "C#", "Phyon")
         for (list in lists) {
             println(list)
@@ -370,7 +387,7 @@ lambda表达式:匿名函数，当Java函数的形参是个接口且只有一个
     }
 
 
-### inner class###
+### inner class ###
     open class Outter0{
         companion object {
             val a: Int = 0
@@ -617,9 +634,11 @@ lambda表达式:匿名函数，当Java函数的形参是个接口且只有一个
 
 
 ## 高阶函数 ##
+传入或者返回函数的函数
+
 
 ### forEach ###
-    //用于循环遍历
+    //用于迭代、遍历
     fun main(args: Array<String>) {
         var lists = listOf("Java", "Kotlin", "C#", "Phyon")
         lists.forEach { println(it) } //接收一个Lambda，无返回值
@@ -627,7 +646,7 @@ lambda表达式:匿名函数，当Java函数的形参是个接口且只有一个
 
 
 ### map、flatMap ###
-    //都是用于转换
+    //用于映射、转换
     fun main(args: Array<String>) {
         val map = mapOf(1 to "Kotlin", 2 to "Java", 3 to "C#") //LinkedHashMap
         val map1 = map.map { it.key.toString() + ":" + it.value } //遍历返回一个List<R>
@@ -636,21 +655,34 @@ lambda表达式:匿名函数，当Java函数的形参是个接口且只有一个
     }
 
     fun main(args: Array<String>) {
-        var lists = listOf(1, 2, 3, 4, 5, 6, 7)
-        /**
-         * 1 -> 1,2
-         * 2 -> 2,3
-         * 3 -> 3,4
-         * 4 -> 4,5
-         * 5 -> 5,6
-         * 6 -> 6,7
-         * 7 -> 7,8
-         *
-         */
-        //flapMap 用于将原Iterable<T> 转换 成另一种Iterable<R>
-        var flatMap = lists.flatMap { listOf(it, it + 1) }
+        //flapMap 用于将原Iterable<T> （打平） 转换 成另一种Iterable<R>
+        var lists = listOf(1..20, 5..10,10..50)
+        //var flatMap = lists.flatMap { intRange -> intRange.map { it } }//简写成下面
+        var flatMap = lists.flatMap { it }
         println(flatMap)
-        flatMap.map { println(it) }
+        flatMap.forEach { println(it) }
+    }
+
+
+### reduce ###
+    //累加，从第一项到最后一项
+    fun main(args: Array<String>) {
+        var map = (0..5).map(::factorial)
+        map.forEach { println(it) }
+        println(map.reduce { acc, i -> acc + i })//累加求和
+    }
+
+    fun factorial(n: Int): Int {
+        if (n == 0) return 0
+        return (1..n).reduce { acc, i -> acc * i } //累加求阶乘
+    }
+
+
+### hold、joinToString ###
+    //拼接
+    fun main(args: Array<String>) {
+        println((0..5).fold(StringBuilder(), { acc, i -> acc.append(i).append(",") }))
+        println((0..5).joinToString(","))
     }
 
 
@@ -665,6 +697,7 @@ lambda表达式:匿名函数，当Java函数的形参是个接口且只有一个
 
 
 ### let ###
+    //调用某对象的let函数，则该对象为函数的参数。在函数块内可以通过 it 指代该对象。返回值为函数块的最后一行或指定return表达式。
     fun main(args: Array<String>) {
         val person: Person? = Person()
         println(person)
@@ -677,12 +710,33 @@ lambda表达式:匿名函数，当Java函数的形参是个接口且只有一个
         }
 
         //to kotlin
-        person?.let {
+        var let = person?.let {
             person.name = "kobe"
             person.age = 38
             println(person)
+            "111"
         }
+        println(let)
+
+        println(testLet())
     }
 
     data class Person(var name: String? = null, var age: Int = 0)
 
+
+    fun testLet(): Int {
+        // fun <T, R> T.let(block: (T) -> R): R = block(this)
+        "testLet".let {
+            println(it)
+            return 1
+        }
+    }
+
+
+## 几个常用注解 ##
+Java调用Kotlin时
+
+- @JvmField 将属性编译为Java变量
+- @JvmStatic 将对象的方法编译为Java静态方法
+- @JvmOverloads  默认参数生成重载方法
+- @JvmName 指定Kotlin文件编译后的类名

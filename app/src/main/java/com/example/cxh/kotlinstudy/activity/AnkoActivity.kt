@@ -6,7 +6,6 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.appcompat.v7.Appcompat
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.sdk25.coroutines.onLongClick
-import java.net.URL
 
 
 class AnkoActivity : BaseActivity() {
@@ -15,18 +14,11 @@ class AnkoActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         val extra = intent.getIntExtra("id", 0)
 
-        doAsync {
-            logcat { Thread.currentThread().name }
-            val readText = URL("https://www.baidu.com/").readText()
-            logcat { readText }
-            uiThread { longToast("hahaha" + readText) }
-        }
-
         verticalLayout {
             padding = dip(20)
             textView("$extra")
 
-            val name = editText() {
+            val name = editText {
                 textSize = 20f
                 textColor = R.color.colorPrimary
                 hint = "name"

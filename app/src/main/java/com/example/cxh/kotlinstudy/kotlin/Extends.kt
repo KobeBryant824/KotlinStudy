@@ -27,3 +27,7 @@ fun View.snackbar(messageRes: Int, duration: Int = Snackbar.LENGTH_SHORT) {
 fun Any.log(message: String) {
     Log.e(this.javaClass.simpleName, message)
 }
+
+inline fun <reified T> T.logcat(log: Any) {
+    Log.e(T::class.simpleName, log.toString())
+}

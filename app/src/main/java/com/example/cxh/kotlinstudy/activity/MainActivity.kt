@@ -2,11 +2,11 @@ package com.example.cxh.kotlinstudy.activity
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import com.example.cxh.kotlinstudy.R
 import com.example.cxh.kotlinstudy.kotlin.snackbar
-import com.example.cxh.kotlinstudy.kotlin.toast
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity() {
 
@@ -19,15 +19,9 @@ class MainActivity : BaseActivity() {
         textView.setTextColor(Color.parseColor("#303F9F"))
         textView.snackbar("Hello, Kotlin!")
 
-        start.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putInt("id", 5)
-            pushPage<AnkoActivity>(bundle)
-
-//            startActivity<AnkoActivity>("id" to 5)
-            toast("hello,anko")
+        start.onClick {
+            startActivity<AnkoActivity>("id" to 5)
         }
-
     }
 
 }
